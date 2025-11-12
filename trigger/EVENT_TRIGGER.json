@@ -1,0 +1,25 @@
+{
+	"name": "EVENT_TRIGGER",
+	"properties": {
+		"description": "TRIGGER TO COPY DATA AT A TIME",
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "Triggers01",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/mysourcecontainer/blobs/",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/7f2a68f1-2d08-4cb5-af98-f0ad3a671d57/resourceGroups/rg_tstdemo001/providers/Microsoft.Storage/storageAccounts/sourcetststorage001",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}

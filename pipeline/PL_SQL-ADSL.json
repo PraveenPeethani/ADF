@@ -1,0 +1,162 @@
+{
+	"name": "PL_SQL-ADSL",
+	"properties": {
+		"description": "Move data from On-Prem SQL to ADSL",
+		"activities": [
+			{
+				"name": "CPY_SQLTOADSLGEN2",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "EMPNO",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "EMPNO",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "ENAME",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "ENAME",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "JOB",
+									"type": "String",
+									"physicalType": "varchar"
+								},
+								"sink": {
+									"name": "JOB",
+									"type": "String",
+									"physicalType": "UTF8"
+								}
+							},
+							{
+								"source": {
+									"name": "MGR",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "MGR",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "HIREDATE",
+									"type": "Date",
+									"physicalType": "date"
+								},
+								"sink": {
+									"name": "HIREDATE",
+									"type": "Date"
+								}
+							},
+							{
+								"source": {
+									"name": "SAL",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "SAL",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "COMM",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "COMM",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							},
+							{
+								"source": {
+									"name": "DEPTNO",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "DEPTNO",
+									"type": "Int32",
+									"physicalType": "INT_32"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SqlServerTable1",
+						"type": "DatasetReference",
+						"parameters": {
+							"SchemaName": "dbo",
+							"TableName": "Emp"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Parquet5",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2025-10-31T10:36:39Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

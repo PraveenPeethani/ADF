@@ -1,0 +1,76 @@
+{
+	"name": "DS_SQL",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DS_OnPremSQL",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"schemaName": {
+				"type": "string"
+			},
+			"TableName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "AccountKey",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ParentAccountKey",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "AccountCodeAlternateKey",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ParentAccountCodeAlternateKey",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "AccountDescription",
+				"type": "nvarchar"
+			},
+			{
+				"name": "AccountType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Operator",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CustomMembers",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ValueType",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CustomMemberOptions",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": {
+				"value": "@dataset().schemaName",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@dataset().TableName",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

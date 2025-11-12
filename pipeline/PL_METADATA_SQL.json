@@ -1,0 +1,37 @@
+{
+	"name": "PL_METADATA_SQL",
+	"properties": {
+		"description": "PIPELINE TO CHECK FILETYPE,EXIST,CILDTEMS USING METADATA",
+		"activities": [
+			{
+				"name": "Get Metadata1",
+				"type": "GetMetadata",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "SqlServerTable1",
+						"type": "DatasetReference",
+						"parameters": {
+							"SchemaName": "dbo",
+							"TableName": "DimProduct"
+						}
+					},
+					"fieldList": [
+						"columnCount"
+					]
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2025-11-07T08:46:37Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
